@@ -15,8 +15,8 @@ body {
 }
 
 .face {
-  width: 575px !important;
-  height: 380px !important;
+  width: 445px !important;
+  height: 300px !important;
 }
 
 .btn-xl {
@@ -368,3 +368,57 @@ a:hover, a:focus, a:active {
 .text-secondary {
   color: #ecb807 !important;
 }
+
+.main-section {
+  text-align: left !important;
+}
+.my-name {
+  font-size: 50px !important;
+}
+.about-me {
+  position: absolute;
+  left: 55%;
+  width: 350px;
+  /* border: 2px solid black; */
+}
+.about-content {
+  padding-top: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Nav bar changes */
+.nav-bar {
+  background-color: rgba(0,0,0,0.77);
+}
+.nav-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: rgba(0,0,0,0.8); */
+}
+
+.nav-li-l {
+  float: left;
+}
+
+.nav-li {
+  float: right;
+}
+
+.nav-links {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none !important;
+}
+
+/* Change the link color to #111 (black) on hover */
+.nav-links:hover {
+  /* background-color: #111; */
+  transform: scale(1.2);
+}
+
+/* Nav bar changes end */
