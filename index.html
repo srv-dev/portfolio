@@ -20,252 +20,261 @@
 
   <!-- Custom CSS -->
   <link href="css/stylish-portfolio.css" rel="stylesheet">
-
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
 
 <body id="page-top">
+  <script type="text/javascript">
+  var TxtType = function(el, toRotate, period) {
+          this.toRotate = toRotate;
+          this.el = el;
+          this.loopNum = 0;
+          this.period = parseInt(period, 10) || 2000;
+          this.txt = '';
+          this.tick();
+          this.isDeleting = false;
+      };
+
+      TxtType.prototype.tick = function() {
+          var i = this.loopNum % this.toRotate.length;
+          var fullTxt = this.toRotate[i];
+
+          if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+          } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+          }
+
+          this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+          var that = this;
+          var delta = 200 - Math.random() * 100;
+
+          if (this.isDeleting) { delta /= 2; }
+
+          if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+          } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 500;
+          }
+
+          setTimeout(function() {
+          that.tick();
+          }, delta);
+      };
+
+      window.onload = function() {
+          var elements = document.getElementsByClassName('typewrite');
+          for (var i=0; i<elements.length; i++) {
+              var toRotate = elements[i].getAttribute('data-type');
+              var period = elements[i].getAttribute('data-period');
+              if (toRotate) {
+                new TxtType(elements[i], JSON.parse(toRotate), period);
+              }
+          }
+          // INJECT CSS
+          var css = document.createElement("style");
+          css.type = "text/css";
+          css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+          document.body.appendChild(css);
+      };
+  </script>
+
 
   <!-- Navigation -->
-  <!-- <a class="menu-toggle rounded" href="#">
-    <i class="fas fa-bars"></i>
-  </a> -->
-  <!-- <nav id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#page-top">Home</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#about">About</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#services">Services</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
-      </li>
-      <li class="sidebar-nav-item">
-        <a class="js-scroll-trigger" href="#contact">Contact</a>
-      </li>
-    </ul>
-  </nav> -->
-
-  <!-- <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Sreevani Pasarlapati</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div  id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </nav> -->
 
   <nav class="nav-bar">
     <ul class="nav-ul">
-      <li class="nav-li-l"><a class="nav-links" href="default.asp">Sreevani Pasarlapati</a></li>
-      <li class="nav-li"><a class="nav-links" href="contact.asp">Contact</a></li>
-      <li class="nav-li"><a class="nav-links" href="news.asp">Projects</a></li>
-      <li class="nav-li"><a class="nav-links" href="about.asp">Skills</a></li>
-      <li class="nav-li"><a class="nav-links" href="about.asp">Experience</a></li>
-      <li class="nav-li"><a class="nav-links" href="about.asp">About Me</a></li>
-
+      <li class="nav-li-l">
+        <a class="nav-links header-logo" href="#">Sreevani Pasarlapati</a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-links" href="https://github.com/srv-dev" target="_blank">
+          <i class="icon-social-github"></i>
+        </a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-links" href="https://linkedin.com/in/sreevani-p" target="_blank">
+          <i class="icon-social-linkedin"></i>
+        </a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-links" href="https://twitter.com/pasarla" target="_blank">
+          <i class="icon-social-twitter"></i>
+        </a>
+      </li>
+      <li class="nav-li">
+        <a class="nav-links" href="mailto:sreevani.pasarla@gmail.com" target="_blank">
+          <i class="icon-envelope"></i>
+        </a>
+      </li>
+      <li class="nav-li-l">
+        <a class="nav-links" href="#about">About Me</a>
+      </li>
+      <li class="nav-li-l">
+        <a class="nav-links" href="#projects">Projects</a>
+      </li>
+      <li class="nav-li-l">
+        <a class="nav-links" href="#skills">Skills</a>
+      </li>
     </ul>
   </nav>
 
   <!-- Header -->
-  <header class="masthead d-flex">
-    <div class="container text-center my-auto">
-      <div class="main-section">
-        <img src="./img/face.png" alt="sreevani" class="face"/>
-        <h1 class="mb-1 my-name">Sreevani Pasarlapati</h1>
-        <h3 class="mb-5">
-          <em>Software Developer</em>
-        </h3>
+  <div class="header-container">
+    <div class="header-white">
+      <div class="face-section">
+        <img src="./img/SEi35_SreevaniP_Headshot_031.jpg" alt="sreevani" class="face"/>
       </div>
-      <!-- <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">More about Me</a> -->
     </div>
-    <div class="overlay"></div>
-    <div class="about-me">
-      <span class="about-content"> I'm a passionate developer with 6+ years of Development experience. I always believe in power of coding and adaptability to learn new technologies in this modern world. I'm enthusiastic about problem solving. My prior experience of building software for corporate clients and working in a team shaped me as a good developer. </span>
+    <div class="header-black">
+      <div class="iam-section">
+        <h1>Hello!<h1>
+        <div class="typewrite-row">
+          <h1>
+          <span>I'm </span>
+          <span href="" class="typewrite" data-period="500" data-type='[ "Sreevani Pasarlapati","Software Developer", "Problem solver","Coffee lover"]'>
+            <span class="wrap"></span>
+          </span>
+          </h1>
+        </div>
+      </div>
     </div>
-  </header>
+  </div>
 
   <!-- About -->
   <section class="content-section bg-light" id="about">
     <div class="container text-center">
       <div class="row">
         <div class="col-lg-10 mx-auto">
-          <h2>About Me</h2>
-          <p class="lead mb-5">Motivated, focused and ambitious. Ideas excite me and challenges motivate me. I am the type of person who is driven to get things done and views obstacles as an exciting challenge that demands a creative, technical solution.</p>
-          <!-- <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">What We Offer</a> -->
-        </div>
+          <h2 class="sections-h2">About Me</h2>
+          <p class="lead mb-5">I'm a passionate developer with 6+ years of Software Development experience. I always believe in power of coding and adaptability to learn new technologies in this modern world. I'm enthusiastic about problem solving. My prior experience of building software for corporate clients and working in a team shaped me as a good developer. </p>
+
+          <!-- <p class="lead mb-5">Motivated, focused and ambitious. Ideas excite me and challenges motivate me. I am the type of person who is driven to get things done and views obstacles as an exciting challenge that demands a creative, technical solution.</p> -->
+
+          <a class="btn btn-dark btn-xl js-scroll-trigger" href="https://drive.google.com/uc?export=download&id=1QL_Sv-ER4IxyH2zZHOiVv3ygkVvNOU30">Download Resumé</a>
+
+         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <!-- <section class="content-section bg-primary text-white text-center" id="services">
-    <div class="container">
-      <div class="content-section-heading">
-        <h3 class="text-secondary mb-0">Services</h3>
-        <h2 class="mb-5">What We Offer</h2>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-          <span class="service-icon rounded-circle mx-auto mb-3">
-            <i class="icon-screen-smartphone"></i>
-          </span>
-          <h4>
-            <strong>Responsive</strong>
-          </h4>
-          <p class="text-faded mb-0">Looks great on any screen size!</p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-          <span class="service-icon rounded-circle mx-auto mb-3">
-            <i class="icon-pencil"></i>
-          </span>
-          <h4>
-            <strong>Redesigned</strong>
-          </h4>
-          <p class="text-faded mb-0">Freshly redesigned for Bootstrap 4.</p>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-          <span class="service-icon rounded-circle mx-auto mb-3">
-            <i class="icon-like"></i>
-          </span>
-          <h4>
-            <strong>Favorited</strong>
-          </h4>
-          <p class="text-faded mb-0">Millions of users
-            <i class="fas fa-heart"></i>
-            Start Bootstrap!</p>
-        </div>
-        <div class="col-lg-3 col-md-6">
-          <span class="service-icon rounded-circle mx-auto mb-3">
-            <i class="icon-mustache"></i>
-          </span>
-          <h4>
-            <strong>Question</strong>
-          </h4>
-          <p class="text-faded mb-0">I mustache you a question...</p>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- Callout -->
-  <!-- <section class="callout">
-    <div class="container text-center">
-      <h2 class="mx-auto mb-5">Welcome to
-        <em>your</em>
-        next website!</h2>
-      <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/template-overviews/stylish-portfolio/">Download Now!</a>
-    </div>
-  </section> -->
-
-  <!-- Portfolio -->
-  <section class="content-section" id="portfolio">
+  <!-- PROJECTS -->
+  <section class="content-section" id="projects">
     <div class="container">
       <div class="content-section-heading text-center">
-        <h2 class="mb-5">Recent Projects</h2>
+        <h2 class="sections-h2">Recent Projects</h2>
       </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6">
-          <a class="portfolio-item" href="https://recipes-498e6.firebaseapp.com" target="_blank">
-            <span class="caption">
-              <span class="caption-content">
-                <h2>RECIPES</h2>
-                <p class="mb-0">Application which suggests recipes of user's choice of cuisines...</p>
-              </span>
-            </span>
-            <img class="img-fluid" src="img/recipes.png" alt="">
-          </a>
+      <div class="row justify-content-center pb-5">
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-spacing">
+          <div class="project-1">
+            <img class="img-fluid" src="img/recipes.png" alt="Recipes">
+            <div class="overlay"></div>
+            <div class="centered">
+              <span class="proj-name"> RECIPES </span> <br>
+              <a href="https://recipes-498e6.firebaseapp.com" target="_blank">LIVE SITE</a> <br>
+              <a href="https://github.com/srv-dev/recipes" target="_blank">GITHUB</a> <br>
+              <span class="tech-stack"> Tech Stack: React JS, Firebase </span>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <a class="portfolio-item" href="#">
-            <span class="caption">
-              <span class="caption-content">
-                <h2>STALK</h2>
-                <p class="mb-0">Plants maintenance and watering scheduler application... </p>
-              </span>
-            </span>
-            <img class="img-fluid" src="img/portfolio-2.jpg" alt="">
-          </a>
+      </div>
+      <div class="row row-2">
+        <div class="column-21">
+          <div class="project-1">
+            <img class="img-fluid" src="img/travel-planner-site.png" alt="">
+            <div class="overlay"></div>
+            <div class="centered">
+              <span class="proj-name"> TRAVEL PLANNER </span> <br>
+              <a href="https://travel-planner-site.herokuapp.com/login" target="_blank">LIVE SITE</a> <br>
+              <a href="https://github.com/srv-dev/travel-planner" target="_blank">GITHUB</a> <br>
+              <span class="tech-stack"> Tech Stack: jQuery, Ruby on Rails </span>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <a class="portfolio-item" href="https://travel-planner-site.herokuapp.com/login" target="_blank">
-            <span class="caption">
-              <span class="caption-content">
-                <h2>TRAVEL PLANNER</h2>
-                <p class="mb-0">Personalized Travel Planner app that suggests cities, hotels and attractions around the world...</p>
-              </span>
-            </span>
-            <img class="img-fluid" src="img/travel-planner.png" alt="">
-          </a>
-        </div>
-        <div class="col-lg-6">
-          <a class="portfolio-item" href="https://srv-dev.github.io/tic-tac-toe/" target="_blank">
-            <span class="caption">
-              <span class="caption-content">
-                <h2>TIC TAC TOE</h2>
-                <p class="mb-0">Tic Tac Toe played in Superheroes style...</p>
-              </span>
-            </span>
-            <img class="img-fluid" src="img/tic-tac-toe.png" alt="">
-          </a>
+        <div class="column-22">
+          <div class="project-1">
+
+            <img class="img-fluid" src="img/stalk-app.png" alt="">
+            <div class="overlay"></div>
+            <div class="centered">
+              <span class="proj-name"> STALK </span> <br>
+              <a href="https://jaytees.github.io/frontend-stalk/#/home" target="_blank">LIVE SITE</a> &nbsp;
+              <a href="https://github.com/srv-dev/backend-stalk" target="_blank">GITHUB</a> <br>
+              <span class="tech-stack"> Tech Stack: React JS, Ruby on Rails </span>
+            </div>
+          </div>
+
+            <div class="project-1">
+                <img class="img-fluid" src="img/tic-tac-toe-p.png" alt="">
+                <div class="overlay"></div>
+                <div class="centered">
+                  <span class="proj-name"> TIC TAC TOE </span> <br>
+                  <a href="https://srv-dev.github.io/tic-tac-toe/" target="_blank">LIVE SITE</a> &nbsp;
+                  <a href="https://github.com/srv-dev/tic-tac-toe" target="_blank">GITHUB</a> <br>
+                  <span class="tech-stack"> Tech Stack: HTML, CSS, JavaScript </span>
+                </div>
+              </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action -->
-  <section class="content-section bg-primary text-white">
-    <div class="container text-center">
-      <!-- <h2 class="mb-4">The buttons below are impossible to resist...</h2> -->
-      <a href="#" class="btn btn-xl btn-light mr-4">Contact</a>
-      <a href="#" class="btn btn-xl btn-dark">Email</a>
+  <!-- Skills -->
+  <section class="content-section bg-light" id="skills">
+    <div class="container">
+      <div class="content-section-heading text-center">
+        <h2 class="sections-h2">Some of my Top Skills</h2>
+      </div>
+      <div class="skills skills-icons">
+        <img class="skills-images" src="img/react.png" alt="React logo">
+        <img class="skills-images" src="img/vue.png" alt="Vue logo">
+        <img class="skills-images" src="img/javascript.png" alt="JavaScript logo">
+        <img class="skills-images" src="img/ruby.png" alt="Ruby logo">
+        <img class="skills-images" src="img/ruby-on-rails.png" alt="Ruby on rails logo">
+        <img class="skills-images" src="img/jQuery.png" alt="jQuery logo">
+        <img class="skills-images" src="img/nodejs.png" alt="Nodejs logo">
+        <img class="skills-images" src="img/postgresql.png" alt="PostgreSQL logo">
+        <img class="skills-images" src="img/git.png" alt="Git logo">
+        <img class="skills-images" src="img/c++.png" alt="C++ logo">
+      </div>
     </div>
   </section>
-
-  <!-- Map -->
-  <!-- <section id="contact" class="map">
-    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-    <br />
-    <small>
-      <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-    </small>
-  </section> -->
 
   <!-- Footer -->
-  <footer class="footer text-center">
+  <footer class="footer text-center" id="contact">
     <div class="container">
+    <!-- <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="75" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
+      <path d="M0 0 L50 100 L100 0 Z" fill="white" stroke="white"></path>
+    </svg> -->
       <ul class="list-inline mb-5">
-        <!-- <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white mr-3" href="#">
-            <i class="icon-social-facebook"></i>
-          </a>
-        </li> -->
         <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white mr-3" href="https://twitter.com/pasarla" target="_blank">
+          <a class="social-link rounded-circle" href="https://github.com/srv-dev" target="_blank">
+            <i class="icon-social-github"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle" href="https://linkedin.com/in/sreevani-p" target="_blank">
+            <i class="icon-social-linkedin"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle" href="https://twitter.com/pasarla" target="_blank">
             <i class="icon-social-twitter"></i>
           </a>
         </li>
         <li class="list-inline-item">
-          <a class="social-link rounded-circle text-white" href="https://github.com/srv-dev" target="_blank">
-            <i class="icon-social-github"></i>
+          <a class="social-link rounded-circle" href="mailto:sreevani.pasarla@gmail.com" target="_blank">
+            <i class="icon-envelope"></i>
           </a>
         </li>
       </ul>
