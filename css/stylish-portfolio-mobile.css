@@ -1,6 +1,9 @@
-@media (max-width: 992px){
+
+@media (max-width: 992px) {
+
   .nav-bar{
     display: none;
+    height: 0px;
   }
   .face {
     width: 100% !important;
@@ -18,24 +21,23 @@
     display: block;
   }
   .iam-section {
-    /* text-align: center !important; */
-    /* margin: 0; */
     padding-left: 5%;
     margin-top: 0px;
-
   }
-.header-black{
-  background: rgb(48, 48, 48);
-  color: white;
-  height:50%;
-  width: 100%;
-  padding-top:90px;
-}
-
-.header-white{
-  background: white;
-  color: black;
-  height:50%;
-  width: 100%;
-}
+  .header-black{
+    background: rgb(48, 48, 48);
+    color: white;
+    height:50%;
+    width: 100%;
+    padding-top:20%;
+  }
+  .header-white{
+    background: white;
+    color: black;
+    height:50%;
+    width: 100%;
+  }
+  .menu-toggle, .sidebar-wrapper {
+    display: block;
+  }
 }
